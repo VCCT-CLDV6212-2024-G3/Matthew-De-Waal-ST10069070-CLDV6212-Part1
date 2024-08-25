@@ -9,6 +9,9 @@ namespace ABCRetail.Models.Tables
 {
     public class CustomerProfileTable : TableStorageClass
     {
+        /// <summary>
+        /// Default constructor
+        /// </summary>
         public CustomerProfileTable() : 
             base(DataStorage.Configuration?.GetSection("ConnectionStrings").GetValue<string>("AzureStorage"), 
                 "CustomerProfile", 

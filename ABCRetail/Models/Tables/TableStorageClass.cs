@@ -6,7 +6,7 @@ using System.Collections.Specialized;
 
 namespace ABCRetail.Models.Tables
 {
-    public abstract class TableStorageClass : IEnumerable<string[]>
+    public abstract class TableStorageClass : IEnumerable<StringCollection>
     {
         /// <summary>
         /// Data fields.
@@ -102,22 +102,35 @@ namespace ABCRetail.Models.Tables
             client?.DeleteEntityAsync(entity);
         }
 
-        public string[] this[int recordIndex]
+        /// <summary>
+        /// Indexer to get and set the record cells.
+        /// </summary>
+        /// <param name="recordIndex"></param>
+        /// <returns></returns>
+        public StringCollection this[int recordIndex]
         {
             get
             {
+                // Declare and instantiate a TableClient object.
                 TableClient client = new TableClient(connectionString, tableName);
+                // Get all the records from the table.
                 var entities = client.Query<TableEntity>();
+                // Get the specific record from the provided recordIndex.
                 TableEntity? entity = entities.ElementAt(recordIndex);
 
-                string[] values = new string[columns.Length];
+                // Declare and instantiate a StringCollection object.
+                StringCollection values = new StringCollection();
+                values.AddRange(new string[columns.Length]);
                 int count = 0;
 
+                List<string> sColumns = new List<string>(columns);
+
+                // Iterate through the collection.
                 for (int i = 0; i < entity.Keys.Count; i++)
                 {
-                    if (entity.Keys.ElementAt(i) == columns[i])
+                    if (sColumns.Contains(entity.Keys.ElementAt(i)))
                     {
-                        values[count] = entity[entity.Keys.ToArray()[i]].ToString();
+                        values[sColumns.IndexOf(entity.Keys.ElementAt(i))] = entity[entity.Keys.ToArray()[i]].ToString();
                         count++;
                     }
                 }
@@ -126,50 +139,71 @@ namespace ABCRetail.Models.Tables
             }
             set
             {
+                // Declare and instantiate a TableClient object.
                 TableClient client = new TableClient(connectionString, tableName);
+                // Get all the records from the table.
                 var entities = client.Query<TableEntity>();
+                // Get the specific record from the provided recordIndex.
                 TableEntity? entity = entities.ElementAt(recordIndex);
 
-                int count = 0;
+                List<string> sColumns = new List<string>(columns);
 
+                // Iterate through the collection.
                 for(int i = 0; i < entity.Keys.Count; i++)
                 {
-                    if(columns.Contains(entity.Keys.ElementAt(i)))
+                    if(sColumns.Contains(entity.Keys.ElementAt(i)))
                     {
-                        entity[columns[count]] = value[count];
-                        count++;
+                        entity[entity.Keys.ElementAt(i)] = value[sColumns.IndexOf(entity.Keys.ElementAt(i))];
                     }
                 }
 
+                // Update the record in the table.
                 client.UpdateEntityAsync<TableEntity>(entity, entity.ETag);
             }
         }
 
+        /// <summary>
+        /// Indexer to get and set a specific record cell.
+        /// </summary>
+        /// <param name="recordIndex"></param>
+        /// <param name="propertyName"></param>
+        /// <returns></returns>
         public string this[int recordIndex, string propertyName]
         {
             get
             {
+                // Declare and instantiate a TableClient object.
                 TableClient client = new TableClient(connectionString, tableName);
+                // Get all the records from the table.
                 var entities = client.Query<TableEntity>();
+                // Get the specific record.
                 TableEntity? entity = entities.ElementAt(recordIndex);
 
                 return entity[propertyName].ToString();
             }
             set
             {
+                // Declare and instantiate a TableClient object.
                 TableClient client = new TableClient(connectionString, tableName);
+                // Get all the records from the table.
                 var entities = client.Query<TableEntity>();
+                // Get the specific record.
                 TableEntity? entity = entities.ElementAt(recordIndex);
 
+                // Update the record.
                 entity[propertyName] = value;
                 client.UpdateEntityAsync<TableEntity>(entity, entity.ETag);
             }
         }
 
+        /// <summary>
+        /// Returns the number of records in the table.
+        /// </summary>
         public int Count
         {
             get
             {
+                // Declare and instantiate a TableClient object.
                 TableClient client = new TableClient(connectionString, tableName);
                 var entities = client.Query<TableEntity>();
 
@@ -177,20 +211,31 @@ namespace ABCRetail.Models.Tables
             }
         }
 
-        public IEnumerator<string[]> GetEnumerator()
+        /// <summary>
+        /// Gets the generic enumator.
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerator<StringCollection> GetEnumerator()
         {
+            // Declare and instantiate a TableClient object.
             TableClient client = new TableClient(connectionString, tableName);
+            // Get all the records from the table.
             var entities = client.Query<TableEntity>();
             List<string> sColumns = new List<string>(columns);
 
+            // Iterate through the records.
             foreach (var entity in entities)
             {
-                string[] values = new string[columns.Length];
+                // Declare and instantiate a StringCollection object.
+                StringCollection values = new StringCollection();
+                values.AddRange(new string[columns.Length]);
 
+                // Iterate through the record data.
                 for (int i = 0; i < entity.Keys.Count; i++)
                 {
-                    if (columns.Contains(entity.Keys.ElementAt(i)))
+                    if (sColumns.Contains(entity.Keys.ElementAt(i)))
                     {
+                        // Update the record.
                         values[sColumns.IndexOf(entity.Keys.ElementAt(i))] = entity[entity.Keys.ToArray()[i]].ToString();
                     }
                 }
@@ -199,20 +244,31 @@ namespace ABCRetail.Models.Tables
             }
         }
 
+        /// <summary>
+        /// Gets the non-generic enumarator.
+        /// </summary>
+        /// <returns></returns>
         IEnumerator IEnumerable.GetEnumerator()
         {
+            // Declare and instantiate a TableClient object.
             TableClient client = new TableClient(connectionString, tableName);
+            // Get all the records from the table.
             var entities = client.Query<TableEntity>();
             List<string> sColumns = new List<string>(columns);
 
+            // Iterate through the records.
             foreach (var entity in entities)
             {
-                string[] values = new string[columns.Length];
+                // Declare and instantiate a StringCollection object.
+                StringCollection values = new StringCollection();
+                values.AddRange(new string[columns.Length]);
 
+                // Iterate through the record data.
                 for (int i = 0; i < entity.Keys.Count; i++)
                 {
-                    if (columns.Contains(entity.Keys.ElementAt(i)))
+                    if (sColumns.Contains(entity.Keys.ElementAt(i)))
                     {
+                        // Update the record.
                         values[sColumns.IndexOf(entity.Keys.ElementAt(i))] = entity[entity.Keys.ToArray()[i]].ToString();
                     }
                 }
