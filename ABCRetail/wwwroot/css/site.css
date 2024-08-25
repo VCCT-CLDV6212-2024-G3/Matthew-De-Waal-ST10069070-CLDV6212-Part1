@@ -1,0 +1,96 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+    margin-bottom: 60px;
+    background-color: #d0d1dd;
+    font-family: Calibri;
+
+    background-image: url("/images/pattern1.png");
+    background-size: 50vw;
+    background-repeat: repeat;
+}
+
+.navbar-custom {
+    background-color: #362977;
+}
+
+.display-4 {
+    color: #c70027;
+    font-weight: bold;
+    margin-top: 40px;
+}
+
+.background-class {
+    background-color: white;
+    background-image: url('/images/background-pattern3.png');
+}
+
+.menu-container {
+    width: 100%;
+    padding-right: var(--bs-gutter-x, 0.75rem);
+    padding-left: var(--bs-gutter-x, 0.75rem);
+    margin-right: auto;
+    margin-left: auto;
+
+}
+
+.footer {
+    background-color: #544a74;
+    color: white;
+}
+
+.button-class {
+    width: 190px;
+    height: 42px;
+    background-color: #2e2da8;
+    color: white;
+    border-color: white;
+    border-style: solid;
+}
+
+@media (min-width: 576px) {
+    .menu-container {
+        max-width: 540px;
+    }
+}
+
+@media (min-width: 768px) {
+    .menu-container {
+        max-width: 720px;
+    }
+}
+
+@media (min-width: 992px) {
+    .menu-container {
+        max-width: 960px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .menu-container {
+        max-width: 1140px;
+    }
+}
+
+@media (min-width: 1400px) {
+    .menu-container {
+        max-width: 1320px;
+    }
+}

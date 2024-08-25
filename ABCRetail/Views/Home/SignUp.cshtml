@@ -1,0 +1,36 @@
+﻿
+@{
+    ViewData["Title"] = "SignUp";
+}
+
+<div align="center">
+    <h1>SignUp</h1>
+    <p>Please enter your details to create your account with ABC Retail.</p>
+    
+    <table>
+        <tr>
+            <th>UserName:</th>
+            <td><input id="txtUserName" type="text" value="" style="width: 240px" /></td>
+        </tr>
+        <tr>
+            <th>First Name:</th>
+            <td><input id="txtFirstName" type="text" value="" style="width: 240px" /></td>
+        </tr>
+        <tr>
+            <th>Last Name:</th>
+            <td><input id="txtLastName" type="text" value="" style="width: 240px" /></td>
+        </tr>
+        <tr>
+            <th>Password:</th>
+            <td><input id="txtPassword" type="password" value="" style="width: 240px" /></td>
+        </tr>
+        <tr>
+            <th>Confirm Password:</th>
+            <td><input id="txtConfirmPassword" type="password" value="" style="width: 240px" /></td>
+        </tr>
+    </table>
+    <br />
+
+    <button onclick="SignUp(txtUserName.value, txtFirstName.value, txtLastName.value, txtPassword.value, txtConfirmPassword.value)">Create Account</button>
+    <button onclick="RedirectToHomePage()">Cancel</button>
+</div>

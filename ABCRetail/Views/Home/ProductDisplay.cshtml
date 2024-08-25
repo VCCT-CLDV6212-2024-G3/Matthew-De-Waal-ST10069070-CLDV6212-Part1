@@ -1,0 +1,59 @@
+﻿@{
+    ViewData["Title"] = "ProductDisplay";
+}
+
+<div align="center">
+
+    @{
+        int productCount = DataStorage.ProductTable.Count;
+        Product[] products = new Product[productCount];
+        int count = 0;
+
+        foreach (string[] sProduct in DataStorage.ProductTable)
+        {
+            products[count] = new Product
+                {
+                    Name = sProduct[0],
+                    Price = Convert.ToSingle(sProduct[1]),
+                    Category = sProduct[2],
+                    TotalStock = Convert.ToInt32(sProduct[3]),
+                    ImagePath = sProduct[4]
+                };
+            count++;
+        }
+
+        <table cellpadding="16" style="border-color: black; border-width: 2px; border-style: solid">
+
+            @{
+                string sCategory = this.Context.Request.Query["Category"];
+                int count2 = 0;
+
+                foreach (Product product in products)
+                {
+                    if (product.Category == sCategory)
+                    {
+                        count2++;
+                        string? imageFullPath = DataStorage.ProductImageStorage?.GetFullPath(product.ImagePath);
+
+                        <tr>
+                            <td><img src="@imageFullPath" style="width: 300px" /></td>
+                            <td>
+                                <b>@product.Name</b><br />
+                                <b>Price: @product.Price</b>
+                            </td>
+                        </tr>
+                    }
+                }
+
+                if(count2 == 0)
+                {
+                    <tr>
+                        <td>No products found</td>
+                    </tr>
+                }
+            }
+
+        </table>
+    }
+
+</div>

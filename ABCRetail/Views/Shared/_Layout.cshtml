@@ -1,0 +1,85 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - ABCRetail</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/ABCRetail.styles.css" asp-append-version="true" />
+</head>
+<body>
+    <header>
+        <div align="center">
+            <div style="height: 2rem"></div>
+            <div class="menu-container">
+                <div style="background-color: #d0d1dd">
+                    <div style="height: 1rem"></div>
+                    <div class="text-center" style="display: inline-flex">
+                        <img src="~/images/abc-retail-logo.png" height="160" />
+                        <div style="width: 20px"></div>
+                        <div style="height: 160px">
+                            <h1 class="display-4">ABC Retail</h1>
+                        </div>
+                    </div>
+                    <div style="height: 1rem"></div>
+                </div>
+                <div class="text-center">
+                    <div style="background-color: #394b4a; color: white">
+                        <div style="height: 1rem; margin: 0px"></div>
+                        <p style="margin: 0px; font-weight: 200; font-size: 15pt">We are an online retailer that sells furnitures and household appliances at lower prices.</p>
+                        <div style="height: 1rem; margin: 0px"></div>
+                    </div>
+                </div>
+
+                <nav class="navbar-custom navbar navbar-expand-sm navbar-toggleable-sm navbar-dark border-bottom box-shadow">
+                    <div class="container-fluid">
+                        <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                            <ul class="navbar-nav flex-grow-1">
+                                <li class="nav-item">
+                                    <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Products">Products</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Contacts">Contact Us</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="About">About Us</a>
+                                </li>
+                            </ul>
+                            <ul class="navbar-nav">
+                                <li class="nav-item">
+                                    <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="SignIn">Sign-in</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="SignUp">Sign-up</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </header>
+    <div class="container">
+        <div class="background-class">
+            <div style="height: 2rem"></div>
+            <main role="main" class="pb-3">
+                @RenderBody()
+            </main>
+        </div>
+    </div>
+    <br />
+    <footer class="border-top footer">
+        <div class="container">
+            &copy; 2024 - ABCRetail - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
