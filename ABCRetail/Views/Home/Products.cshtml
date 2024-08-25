@@ -1,135 +1,43 @@
 ﻿@{
     ViewData["Title"] = "Products";
-    var collection = DataStorage.ProductImageStorage.RecieveData("category-");
-    string[][] items = new string[collection.Count][];
-    int count = 0;
 
-    foreach (string item in collection)
-    {
-        items[count] = item.Split(':');
-        count++;
-    }
+    var resources = Resources.ProductCategoryImages;
 
     <div align="center">
 
         <div style="background-color: white">
-        <br />
-        <br />
+            <br />
+            <br />
             <h1>Our Products</h1>
             <h4>Browse for product(s) by category...</h4>
             <br />
             <br />
         </div>
 
-        <div style="background-color: black; height: 3px"></div>
+        @{
+            foreach (var resource in resources)
+            {
+                <div style="background-color: black; height: 3px"></div>
 
-        <!-- Category: Televisions -->
-        <div>
-            <div>
-                <br />
-                <div style="background-color: black; width: 300px">
-                    <div style="height: 0.5rem"></div>
-                    <h4 style="font-weight: bold; margin: 0px; color: white">Televisions</h4>
-                    <div style="height: 0.5rem"></div>
+                <div>
+                    <div>
+                        <br />
+                        <div style="background-color: black; width: 300px">
+                            <div style="height: 0.5rem"></div>
+                            <h4 style="font-weight: bold; margin: 0px; color: white">Televisions</h4>
+                            <div style="height: 0.5rem"></div>
+                        </div>
+                        <br />
+                        <img src="@resource" height="400" />
+                        <br />
+                        <br />
+                        <button class="button-class">View All Products</button>
+                        <br />
+                        <br />
+                        <br />
+                    </div>
                 </div>
-                <br />
-                <img src="@DataStorage.ProductImageStorage.GetFullPath(items.Where(i => i[1] == "category-televisions").ToArray()[0][0])" height="400" />
-                <br />
-                <br />
-                <button class="button-class" onclick="window.location = '/Home/ProductDisplay?Category=Televisions'">View All Products</button>
-                <br />
-                <br />
-                <br />
-            </div>
-        </div>
-
-        <div style="background-color: black; height: 3px"></div>
-
-        <!-- Category: Washing Machines -->
-        <div>
-            <div>
-                <br />
-                <div style="background-color: black; width: 300px">
-                    <div style="height: 0.5rem"></div>
-                    <h4 style="font-weight: bold; margin: 0px; color: white">Washing Machines</h4>
-                    <div style="height: 0.5rem"></div>
-                </div>
-                <br />
-                <img src="@DataStorage.ProductImageStorage.GetFullPath(items.Where(i => i[1] == "category-washing-machines").ToArray()[0][0])" height="400" style="border-width: 5px; border-color: black; border-style: solid" />
-                <br />
-                <br />
-                <button class="button-class" onclick="window.location = '/Home/ProductDisplay?Category=WashingMachines'">View All Products</button>
-                <br />
-                <br />
-                <br />
-            </div>
-        </div>
-
-        <div style="background-color: black; height: 3px"></div>
-
-        <!-- Category: Tables-->
-        <div>
-            <div>
-                <br />
-                <div style="background-color: black; width: 300px">
-                    <div style="height: 0.5rem"></div>
-                    <h4 style="font-weight: bold; margin: 0px; color: white">Tables</h4>
-                    <div style="height: 0.5rem"></div>
-                </div>
-                <br />
-                <img src="@DataStorage.ProductImageStorage.GetFullPath(items.Where(i => i[1] == "category-tables").ToArray()[0][0])" height="400" style="border-width: 5px; border-color: black; border-style: solid" />
-                <br />
-                <br />
-                <button class="button-class" onclick="window.location = '/Home/ProductDisplay?Category=Tables'">View All Products</button>
-                <br />
-                <br />
-                <br />
-            </div>
-        </div>
-
-        <div style="background-color: black; height: 3px"></div>
-
-        <!-- Category: Chairs -->
-        <div>
-            <div>
-
-                <br />
-                <div style="background-color: black; width: 300px">
-                    <div style="height: 0.5rem"></div>
-                    <h4 style="font-weight: bold; margin: 0px; color: white">Chairs</h4>
-                    <div style="height: 0.5rem"></div>
-                </div>
-                <br />
-                <img src="@DataStorage.ProductImageStorage.GetFullPath(items.Where(i => i[1] == "category-chairs").ToArray()[0][0])" height="400" style="border-width: 5px; border-color: black; border-style: solid" />
-                <br />
-                <br />
-                <button class="button-class" onclick="window.location = '/Home/ProductDisplay?Category=Chairs'">View All Products</button>
-                <br />
-                <br />
-                <br />
-            </div>
-        </div>
-
-        <div style="background-color: black; height: 3px"></div>
-
-        <!-- Category: Couches -->
-        <div>
-            <div>
-                <br />
-                <div style="background-color: black; width: 300px">
-                    <div style="height: 0.5rem"></div>
-                    <h4 style="font-weight: bold; margin: 0px; color: white">Couches</h4>
-                    <div style="height: 0.5rem"></div>
-                </div>
-                <br />
-                <img src="@DataStorage.ProductImageStorage.GetFullPath(items.Where(i => i[1] == "category-couches").ToArray()[0][0])" height="400" style="border-width: 5px; border-color: black; border-style: solid" />
-                <br />
-                <br />
-                <button class="button-class" onclick="window.location = '/Home/ProductDisplay?Category=Couches'">View All Products</button>
-                <br />
-                <br />
-                <br />
-            </div>
-        </div>
+            }
+        }
     </div>
 }

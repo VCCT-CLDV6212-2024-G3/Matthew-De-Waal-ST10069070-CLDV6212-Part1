@@ -17,13 +17,9 @@
 
     <div align="center">
         @{
-            var storage = DataStorage.MultimediaStorage;
-            var items = storage.RecieveData("/homepage-images/");
-
-            foreach (var item in items)
+            foreach (var item in Resources.HomepageImages)
             {
-                string s = storage.GetFullPath(item.Split(':')[0]);
-                <img src="@s" style="width: 90%; height: 500px; border-width: 5px; border-color: black; border-style: solid" />
+                <img src="@item" style="width: 90%; height: 500px; border-width: 5px; border-color: black; border-style: solid" />
                 <br />
                 <br />
             }

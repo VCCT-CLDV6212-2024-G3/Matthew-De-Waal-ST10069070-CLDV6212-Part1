@@ -9,7 +9,7 @@
         Product[] products = new Product[productCount];
         int count = 0;
 
-        foreach (string[] sProduct in DataStorage.ProductTable)
+        foreach (var sProduct in DataStorage.ProductTable)
         {
             products[count] = new Product
                 {

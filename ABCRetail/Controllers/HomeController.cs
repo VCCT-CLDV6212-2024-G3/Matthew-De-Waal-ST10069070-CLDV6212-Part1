@@ -104,7 +104,7 @@ namespace ABCRetail.Controllers
         {
             bool accountExists = false;
 
-            foreach(string[] record in DataStorage.CustomerProfileTable)
+            foreach(StringCollection record in DataStorage.CustomerProfileTable)
             {
                 if (record[0] == userName)
                 {
@@ -119,9 +119,9 @@ namespace ABCRetail.Controllers
         private bool Authenticate(string userName, string password)
         {
             bool result = false;
-            string[]? userDetails = null;
+            StringCollection userDetails = null;
 
-            foreach(string[] record in DataStorage.CustomerProfileTable)
+            foreach(StringCollection record in DataStorage.CustomerProfileTable)
             {
                 if (record[0] == userName)
                 {
