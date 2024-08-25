@@ -31,5 +31,7 @@ namespace ABCRetail.Models
                 return result;
             }
         }
+
+        public static string[] ProductCategories => new string[] { "Chairs", "Couches", "Stoves", "Tables", "Televisions", "Washing Machines" };
     }
 }

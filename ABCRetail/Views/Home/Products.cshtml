@@ -15,6 +15,8 @@
         </div>
 
         @{
+            int count = 0;
+
             foreach (var resource in resources)
             {
                 <div style="background-color: black; height: 3px"></div>
@@ -24,19 +26,36 @@
                         <br />
                         <div style="background-color: black; width: 300px">
                             <div style="height: 0.5rem"></div>
-                            <h4 style="font-weight: bold; margin: 0px; color: white">Televisions</h4>
+                            <h4 style="font-weight: bold; margin: 0px; color: white">@Resources.ProductCategories[count]</h4>
                             <div style="height: 0.5rem"></div>
                         </div>
                         <br />
-                        <img src="@resource" height="400" />
+
+                        @{
+                            if (resource.EndsWith(".png"))
+                            {
+                                <img src="@resource" height="400" />
+                            }
+                            else
+                            {
+                                <img src="@resource" height="400" style="border-color: black; border-width: 3px; border-style: solid" />
+                            }
+                        }
                         <br />
                         <br />
-                        <button class="button-class">View All Products</button>
+
+                        @{
+                            string category = Resources.ProductCategories[count].Replace(" ", string.Empty);
+                        }
+
+                        <button class="button-class" onclick="window.location = '/Home/ProductDisplay?Category=@category'">View All Products</button>
                         <br />
                         <br />
                         <br />
                     </div>
                 </div>
+
+                count++;
             }
         }
     </div>
