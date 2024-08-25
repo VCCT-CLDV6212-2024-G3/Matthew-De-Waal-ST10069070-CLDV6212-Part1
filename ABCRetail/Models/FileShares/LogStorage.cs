@@ -9,9 +9,11 @@ namespace ABCRetail.Models.FileShares
 {
     public class LogStorage : FileStorageClass
     {
-        public LogStorage() : base(DataStorage.Configuration.GetSection("ConnectionStrings").GetValue<string>("AzureStorage"), "log-files")
-        {
-            
-        }
+        /// <summary>
+        /// Default constructor
+        /// </summary>
+        public LogStorage() : 
+            base(DataStorage.Configuration.GetSection("ConnectionStrings").GetValue<string>("AzureStorage"), 
+                "log-files") { }
     }
 }

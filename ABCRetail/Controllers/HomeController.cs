@@ -5,8 +5,6 @@ using Newtonsoft.Json;
 using System.Collections.Specialized;
 using System.Configuration;
 using System.Diagnostics;
-using System.Reflection.Metadata;
-using System.Reflection.Metadata.Ecma335;
 
 namespace ABCRetail.Controllers
 {

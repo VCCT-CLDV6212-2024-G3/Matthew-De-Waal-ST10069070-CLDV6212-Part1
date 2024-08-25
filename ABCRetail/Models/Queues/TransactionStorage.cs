@@ -9,9 +9,11 @@ namespace ABCRetail.Models.Queues
 {
     public class TransactionStorage : QueueStorageClass
     {
-        public TransactionStorage() : base(DataStorage.Configuration.GetSection("ConnectionStrings").GetValue<string>("AzureStorage"), "transactions")
-        {
-
-        }
+        /// <summary>
+        /// Default constructor
+        /// </summary>
+        public TransactionStorage() :
+            base(DataStorage.Configuration.GetSection("ConnectionStrings").GetValue<string>("AzureStorage"),
+                "transactions") { }
     }
 }

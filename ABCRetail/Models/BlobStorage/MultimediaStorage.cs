@@ -11,6 +11,11 @@ namespace ABCRetail.Models.BlobStorage
 {
     public class MultimediaStorage : BlobStorageClass
     {
-        public MultimediaStorage() : base(DataStorage.Configuration.GetSection("ConnectionStrings").GetValue<string>("AzureStorage"), "multimedia") { }
+        /// <summary>
+        /// Default constructor
+        /// </summary>
+        public MultimediaStorage() : 
+            base(DataStorage.Configuration.GetSection("ConnectionStrings").GetValue<string>("AzureStorage"), 
+                "multimedia") { }
     }
 }

@@ -9,9 +9,11 @@ namespace ABCRetail.Models.FileShares
 {
     public class ContractStorage : FileStorageClass
     {
-        public ContractStorage() : base(DataStorage.Configuration.GetSection("ConnectionStrings").GetValue<string>("AzureStorage"), "contracts")
-        {
-
-        }
+        /// <summary>
+        /// Default constructor
+        /// </summary>
+        public ContractStorage() : 
+            base(DataStorage.Configuration.GetSection("ConnectionStrings").GetValue<string>("AzureStorage"), 
+                "contracts") { }
     }
 }

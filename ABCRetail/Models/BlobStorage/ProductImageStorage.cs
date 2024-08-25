@@ -4,6 +4,11 @@ namespace ABCRetail.Models.BlobStorage
 {
     public class ProductImageStorage : BlobStorageClass
     {
-        public ProductImageStorage() : base(DataStorage.Configuration.GetSection("ConnectionStrings").GetValue<string>("AzureStorage"), "product-images") { }
+        /// <summary>
+        /// Default constructor
+        /// </summary>
+        public ProductImageStorage() : 
+            base(DataStorage.Configuration.GetSection("ConnectionStrings").GetValue<string>("AzureStorage"), 
+                "product-images") { }
     }
 }

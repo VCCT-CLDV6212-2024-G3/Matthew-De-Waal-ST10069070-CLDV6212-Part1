@@ -10,11 +10,11 @@ namespace ABCRetail.Models.Queues
 {
     public class InventoryStorage : QueueStorageClass
     {
-        private readonly string? connectionString;
-
-        public InventoryStorage() : base(DataStorage.Configuration.GetSection("ConnectionStrings").GetValue<string>("AzureStorage"), "inventory")
-        {
-
-        }
+        /// <summary>
+        /// Default constructor
+        /// </summary>
+        public InventoryStorage() :
+            base(DataStorage.Configuration.GetSection("ConnectionStrings").GetValue<string>("AzureStorage"),
+                "inventory") { }
     }
 }
