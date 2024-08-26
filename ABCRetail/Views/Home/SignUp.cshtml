@@ -4,10 +4,13 @@
 }
 
 <div align="center">
-    <h1>SignUp</h1>
-    <p>Please enter your details to create your account with ABC Retail.</p>
+    <img src="~/images/user-profile.png" height="180" />
+    <br />
+    <br />
+    <h1 style="background-color: white; width: fit-content">Sign Up</h1>
+    <p style="background-color: white; width: fit-content">Please enter your details to create your account with ABC Retail.</p>
     
-    <table>
+    <table cellpadding="2">
         <tr>
             <th>UserName:</th>
             <td><input id="txtUserName" type="text" value="" style="width: 240px" /></td>
@@ -31,6 +34,6 @@
     </table>
     <br />
 
-    <button onclick="SignUp(txtUserName.value, txtFirstName.value, txtLastName.value, txtPassword.value, txtConfirmPassword.value)">Create Account</button>
-    <button onclick="RedirectToHomePage()">Cancel</button>
+    <button class="button-class button-class-small" onclick="SignUp(txtUserName.value, txtFirstName.value, txtLastName.value, txtPassword.value, txtConfirmPassword.value)">Create Account</button>
+    <button class="button-class button-class-small" onclick="RedirectToHomePage()">Cancel</button>
 </div>

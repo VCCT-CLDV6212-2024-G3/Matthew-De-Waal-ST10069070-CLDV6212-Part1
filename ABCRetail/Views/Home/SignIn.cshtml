@@ -4,9 +4,12 @@
 }
 
 <div align="center">
-    <h1>Sign In</h1>
+    <img src="~/images/user-profile.png" height="180" />
+    <br />
+    <br />
+    <h1 style="background-color: white; width: fit-content">Sign In</h1>
 
-    <table>
+    <table cellpadding="2">
         <tr>
             <th>UserName:</th>
             <td><input id="txtUserName" type="text" value="" style="width: 240px" /></td>
@@ -16,7 +19,8 @@
             <td><input id="txtPassword" type="text" value="" style="width: 240px" /></td>
         </tr>
     </table>
+    <br />
 
-    <button onclick="SignIn(txtUserName.value, txtPassword.value)">Sign In</button>
-    <button onclick="RedirectToHomePage()">Cancel</button>
+    <button class="button-class button-class-small" onclick="SignIn(txtUserName.value, txtPassword.value)">Sign In</button>
+    <button class="button-class button-class-small" onclick="RedirectToHomePage()">Cancel</button>
 </div>

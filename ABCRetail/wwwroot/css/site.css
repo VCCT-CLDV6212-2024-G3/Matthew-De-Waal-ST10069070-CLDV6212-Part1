@@ -65,6 +65,11 @@ body {
     border-style: solid;
 }
 
+.button-class-small {
+    width: 160px;
+    height: 38px;
+}
+
 @media (min-width: 576px) {
     .menu-container {
         max-width: 540px;
