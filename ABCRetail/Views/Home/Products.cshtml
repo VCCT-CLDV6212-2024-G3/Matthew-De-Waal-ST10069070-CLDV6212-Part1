@@ -11,7 +11,20 @@
             <h1>Our Products</h1>
             <h4>Browse for product(s) by category...</h4>
             <br />
-            <br />
+            <div>
+
+            <i>Jump to...</i><br /><br />
+                @{
+                    foreach(var category in Resources.ProductCategories)
+                    {
+                        <button class="button-class button-class-small2" style="background-color: white; color: black; border-color: black; border-width: 1px; border-style: solid" onmouseover="QuickNav_MouseHover(event)" onmouseout="QuickNav_MoveLeave(event)" onclick="document.getElementById('@category').scrollIntoView()">@category</button>
+                        <span>&nbsp;&nbsp;</span>
+                    }
+                }
+
+                <br />
+                <br />
+            </div>
         </div>
 
         @{
@@ -21,7 +34,7 @@
             {
                 <div style="background-color: black; height: 3px"></div>
 
-                <div>
+                <div id="@Resources.ProductCategories[count]">
                     <div>
                         <br />
                         <div style="background-color: black; width: 300px">

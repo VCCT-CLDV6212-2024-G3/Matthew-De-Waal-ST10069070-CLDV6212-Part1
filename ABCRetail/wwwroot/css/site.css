@@ -70,6 +70,12 @@ body {
     height: 38px;
 }
 
+.button-class-small2 {
+    width: 160px;
+    height: 33px;
+}
+
+
 @media (min-width: 576px) {
     .menu-container {
         max-width: 540px;

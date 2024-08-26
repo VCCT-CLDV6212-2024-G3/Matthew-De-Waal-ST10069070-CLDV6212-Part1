@@ -25,8 +25,19 @@ namespace ABCRetail.Controllers
             return View();
         }
 
+        [HttpGet]
+        [HttpPost]
         public IActionResult Contacts()
         {
+            if(this.Request.Method == "POST")
+            {
+                string messageContent = new StreamReader(this.Request.Body).ReadToEndAsync().Result;
+                DataStorage.InventoryStorage?.AddMessage(messageContent);
+
+                // The Request succeeded.
+                this.Response.StatusCode = 1;
+            }
+
             return View();
         }
 

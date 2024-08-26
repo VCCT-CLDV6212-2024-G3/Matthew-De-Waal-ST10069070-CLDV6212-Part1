@@ -6,21 +6,31 @@
 
     <div align="center">
 
-        <div style="width: fit-content">
-            <br />
-        <h2 style="background-color: white; width: fit-content">Contact Us...</h2>
+        <!-- Content 1 -->
+        <div id="content1" style="display: block">
+            <div style="width: fit-content">
+                <br />
+                <h2 style="background-color: white; width: fit-content">Contact Us...</h2>
 
-        <span style="font-size: 14pt; background-color: white">Please send us feedback to help us improve our website, products and services.</span>
-        <br />
-        <br />
-        </div>
-        <div style="width: 600px">
-            <p align="left" style="margin: 0px"><b style="background-color: white; width: fit-content">Send us a message:</b><br /></p>
-            <textarea style="width: 100%; height: 300px"></textarea><br />
-
-            <div align="right">
-            <button class="button-class">Send Message</button>
+                <span style="font-size: 14pt; background-color: white">Please send us feedback to help us improve our website, products and services.</span>
+                <br />
+                <br />
             </div>
+            <div style="width: 600px">
+                <p align="left" style="margin: 0px"><b style="background-color: white; width: fit-content">Send us a message:</b><br /></p>
+                <textarea id="txtMessage" style="width: 100%; height: 300px"></textarea><br />
+
+                <div align="right">
+                    <button class="button-class" onclick="SendMessage(txtMessage.value)">Send Message</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Content 2 -->
+        <div id="content2" style="display: none">
+            <h3 style="background-color: white; width: fit-content">Thank you for submitting your response.</h3>
+            <b style="background-color: white; width: fit-content">We will try our best to improve our website, products and services.</b><br /><br />
+            <button class="button-class button-class-small" onclick="CloseMessage()">OK</button>
         </div>
     </div>
 </div>

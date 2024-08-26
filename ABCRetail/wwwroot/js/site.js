@@ -48,3 +48,33 @@ function SignIn(userName, password) {
         }
     }
 }
+
+function SendMessage(message) {
+    let request = new XMLHttpRequest();
+    request.open("POST", "/Home/Contacts", true);
+    request.send(message);
+
+    request.onloadend = function () {
+        if (request.status == 1) {
+            document.getElementById("txtMessage").value = "";
+
+            document.getElementById("content1").style.display = "none";
+            document.getElementById("content2").style.display = "block";
+        }
+    }
+}
+
+function CloseMessage() {
+    document.getElementById("content1").style.display = "block";
+    document.getElementById("content2").style.display = "none";
+}
+
+function QuickNav_MouseHover(e) {
+    e.srcElement.style.backgroundColor = "#286995"
+    e.srcElement.style.color = "white";
+}
+
+function QuickNav_MoveLeave(e) {
+    e.srcElement.style.backgroundColor = 'white';
+    e.srcElement.style.color = "black";
+}
