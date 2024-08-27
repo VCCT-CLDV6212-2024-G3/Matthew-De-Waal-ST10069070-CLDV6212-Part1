@@ -32,6 +32,15 @@ namespace ABCRetail.Models
             }
         }
 
+        public static string? AboutUsImage
+        {
+            get
+            {
+                string resource = DataStorage.MultimediaStorage?.RecieveData("/about-us-images/about-us-image.jpg")[0];
+                return DataStorage.MultimediaStorage.GetFullPath(resource);
+            }
+        }
+
         public static string[] ProductCategories => new string[] { "Chairs", "Couches", "Stoves", "Tables", "Televisions", "Washing Machines" };
     }
 }

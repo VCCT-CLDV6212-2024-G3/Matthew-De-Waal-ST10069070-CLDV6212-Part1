@@ -38,9 +38,9 @@
 
                         <tr>
                             <td><img src="@imageFullPath" style="width: 300px" /></td>
-                            <td>
-                                <b style="font-size: 13pt; background-color: white">@product.Name</b><br />
-                                <b style="font-size: 13pt; background-color: white">Price: @product.Price.ToString("N2")</b>
+                            <td style="background-color: white">
+                                <b style="font-size: 13pt">@product.Name</b><br />
+                                <b style="font-size: 13pt">Price: @product.Price.ToString("N2")</b>
                             </td>
                             @{
                                 if (ABCRetail.UserLoggedIn)
@@ -65,6 +65,8 @@
             }
 
         </table>
+        <br />
+        <button class="button-class" onclick="window.location = '/Home/Products'">Back</button>
     }
 
 </div>
