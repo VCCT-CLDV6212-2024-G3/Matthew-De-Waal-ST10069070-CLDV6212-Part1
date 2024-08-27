@@ -59,37 +59,40 @@
 
                 Product? p = FindProduct(this.Context.Request.Query["ProductId"].ToString());
 
-                if (this.Context.Request.Query["Action"] == "OnceOff")
+                if (p != null)
                 {
-                    <b>You have bought this product on a once-off purchase.</b>
+                    if (this.Context.Request.Query["Action"] == "OnceOff")
+                    {
+                        <b>You have bought this product on a once-off purchase.</b>
+                    }
+
+                    if (this.Context.Request.Query["Action"] == "Contract")
+                    {
+                        <b>You have bought this product on a two year contract.</b>
+                    }
+
+                    <br />
+                    <br />
+                    string imagePath = DataStorage.ProductImageStorage.GetFullPath(p.ImagePath);
+
+                    if (imagePath.EndsWith(".png"))
+                    {
+                        <img src="@imagePath" height="300" />
+                    }
+                    else
+                    {
+                        <img src="@imagePath" height="300" style="border-color: black; border-width: 3px; border-style: solid" />
+                    }
+
+                    <br />
+                    <br />
+                    DisplayProduct(p);
+
+                    <br />
+                    <button class="button-class" style="width: 230px" onclick="window.location = '/Home/Products'">Return to the Products page</button>
+                    <br />
+                    <br />
                 }
-
-                if (this.Context.Request.Query["Action"] == "Contract")
-                {
-                    <b>You have bought this product on a two year contract.</b>
-                }
-
-                <br />
-                <br />
-                string imagePath = DataStorage.ProductImageStorage.GetFullPath(p.ImagePath);
-
-                if (imagePath.EndsWith(".png"))
-                {
-                    <img src="@imagePath" height="300" />
-                }
-                else
-                {
-                    <img src="@imagePath" height="300" style="border-color: black; border-width: 3px; border-style: solid" />
-                }
-
-                <br />
-                <br />
-                DisplayProduct(p);
-
-                <br />
-                <button class="button-class" style="width: 230px" onclick="window.location = '/Home/Products'">Return to the Products page</button>
-                <br />
-                <br />
             }
         </div>
     </div>

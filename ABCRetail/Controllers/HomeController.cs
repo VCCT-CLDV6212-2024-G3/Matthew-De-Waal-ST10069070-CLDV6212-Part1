@@ -9,6 +9,7 @@ using System.Diagnostics;
 namespace ABCRetail.Controllers
 {
     using ABCRetail.Models;
+    using System.Text;
 
     public class HomeController : Controller
     {
@@ -166,8 +167,59 @@ namespace ABCRetail.Controllers
             return View();
         }
 
+        [HttpGet]
+        [HttpPost]
         public IActionResult BuyProduct()
         {
+            if(this.Request.Method == "POST")
+            {
+                string sRequestData = new StreamReader(this.Request.Body).ReadToEndAsync().Result;
+                dynamic requestData = JsonConvert.DeserializeObject(sRequestData);
+
+                string productId = Convert.ToString(requestData.ProductId);
+                string userName = Convert.ToString(requestData.UserName);
+                string mode = Convert.ToString(requestData.Mode);
+
+                StringBuilder sb = new StringBuilder();
+
+                if (mode == "OnceOff")
+                {
+                    sb.AppendLine("ONCE OFF PURCHASE");
+                    sb.AppendLine($"Product ID: {productId}");
+                    sb.AppendLine($"UserName: {userName}");
+                    sb.AppendLine($"Mode: {mode}");
+
+                    byte[] contentBytes = Encoding.UTF8.GetBytes(sb.ToString());
+                    string recieptFileName = $"reciept-{Guid.NewGuid().ToString()}.txt";
+
+                    DataStorage.LogStorage.AddItem(recieptFileName, contentBytes);
+                    DataStorage.TransactionStorage.AddMessage($"PRODUCT PURCHASED : {recieptFileName}");
+                }
+
+                if (mode == "Contract")
+                {
+                    sb.AppendLine("TWO YEAR CONTRACT");
+                    sb.AppendLine($"Product ID: {productId}");
+                    sb.AppendLine($"UserName: {userName}");
+                    sb.AppendLine($"Mode: {mode}");
+
+                    DateTime contractBeginDate = DateTime.Now;
+                    DateTime contractEndDate = DateTime.Now.AddYears(2);
+
+                    sb.AppendLine($"Begin Date: {contractBeginDate.ToString("yyyy-MM-dd")}");
+                    sb.AppendLine($"End Date: {contractEndDate.ToString("yyyy-MM-dd")}");
+
+                    byte[] contentBytes = Encoding.UTF8.GetBytes(sb.ToString());
+                    string contractFileName = $"contract-{Guid.NewGuid().ToString()}.txt";
+
+                    DataStorage.ContractStorage.AddItem(contractFileName, contentBytes);
+                    DataStorage.TransactionStorage.AddMessage($"PRODUCT PURCHASED : {contractFileName}");
+                }
+
+                // The request succeeded.
+                this.Response.StatusCode = 1;
+            }
+
             return View();
         }
 

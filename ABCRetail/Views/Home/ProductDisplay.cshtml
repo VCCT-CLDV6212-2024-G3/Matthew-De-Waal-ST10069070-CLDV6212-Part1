@@ -46,9 +46,9 @@
                                 if (ABCRetail.UserLoggedIn)
                                 {
                                     <td>
-                                        <button class="button-class button-class-small2" onclick="window.location = '/Home/BuyProduct?Action=OnceOff&ProductId=@product.Id'">Pay Now</button>
+                                        <button class="button-class button-class-small2" onclick="BuyProduct('@product.Id', '@ABCRetail.UserName', 'OnceOff')">Pay Now</button>
                                         <br />
-                                        <button class="button-class button-class-small2" onclick="window.location = '/Home/BuyProduct?Action=Contract&ProductId=@product.Id'">Pay On Contract</button>
+                                        <button class="button-class button-class-small2" onclick="BuyProduct('@product.Id', '@ABCRetail.UserName', 'Contract')">Pay On Contract</button>
                                     </td>
                                 }
                             }

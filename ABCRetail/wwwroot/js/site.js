@@ -78,3 +78,15 @@ function QuickNav_MoveLeave(e) {
     e.srcElement.style.backgroundColor = 'white';
     e.srcElement.style.color = "black";
 }
+
+function BuyProduct(productId, userName, mode) {
+    let request = new XMLHttpRequest();
+    request.open("POST", "/Home/BuyProduct", true);
+
+    let requestData = { "ProductId": productId, "UserName": userName, "Mode": mode };
+    request.send(JSON.stringify(requestData));
+
+    request.onloadend = function () {
+        window.location = "/Home/BuyProduct/?Action=" + mode + "&ProductId=" + productId;
+    }
+}
