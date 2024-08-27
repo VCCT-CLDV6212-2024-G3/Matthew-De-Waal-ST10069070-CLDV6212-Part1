@@ -10,7 +10,6 @@ using ABCRetail.Models.Tables;
 
 namespace ABCRetail.Models
 {
-
     public static class DataStorage
     {
         private static IConfiguration? configuration;
@@ -22,6 +21,7 @@ namespace ABCRetail.Models
         private static QueueStorageClass? transactionStorage;
         private static TableStorageClass? customerProfileTable;
         private static TableStorageClass? productTable;
+        private static bool bInitialized;
 
         public static void Initialize(IConfiguration _configuration)
         {
@@ -35,6 +35,8 @@ namespace ABCRetail.Models
             transactionStorage = new TransactionStorage();
             customerProfileTable = new CustomerProfileTable();
             productTable = new ProductTable();
+
+            bInitialized = true;
         }
 
         public static IConfiguration? Configuration => configuration;
@@ -46,5 +48,7 @@ namespace ABCRetail.Models
         public static QueueStorageClass? TransactionStorage => transactionStorage;
         public static TableStorageClass? CustomerProfileTable => customerProfileTable;
         public static TableStorageClass? ProductTable => productTable;
+
+        public static bool Initialized { get => bInitialized; }
     }
 }

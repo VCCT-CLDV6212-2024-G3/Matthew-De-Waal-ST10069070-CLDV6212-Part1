@@ -1,0 +1,96 @@
+﻿@functions {
+    public Product? FindProduct(string id)
+    {
+        Product? product = null;
+
+        foreach (var p in DataStorage.ProductTable)
+        {
+            if (p[0] == id)
+            {
+                product = new()
+                    {
+                        Id = p[0],
+                        Name = p[1],
+                        Price = Convert.ToSingle(p[2]),
+                        Category = p[3],
+                        TotalStock = Convert.ToInt32(p[4]),
+                        ImagePath = p[5]
+                    };
+                break;
+            }
+        }
+
+        return product;
+    }
+
+    public void DisplayProduct(Product? product)
+    {
+        <table>
+            <tr>
+                <th>Product ID:</th>
+                <td>@product?.Id</td>
+            </tr>
+            <tr>
+                <th>Product Name:</th>
+                <td>@product?.Name</td>
+            </tr>
+            <tr>
+                <th>Product Price:</th>
+                <td>@product?.Price.ToString("N2")</td>
+            </tr>
+            <tr>
+                <th>Product Category:</th>
+                <td>@product?.Category</td>
+            </tr>
+        </table>
+    }
+}
+
+@{
+    ViewData["Title"] = "BuyProduct";
+
+    <div align="center">
+        <div style="background-color: white; border-color: black; border-width: 1px; border-style: solid">
+            <br />
+            <h3>Purchase successful</h3>
+            <b>Thank you for your purchase.</b>
+
+            @{
+
+                Product? p = FindProduct(this.Context.Request.Query["ProductId"].ToString());
+
+                if (this.Context.Request.Query["Action"] == "OnceOff")
+                {
+                    <b>You have bought this product on a once-off purchase.</b>
+                }
+
+                if (this.Context.Request.Query["Action"] == "Contract")
+                {
+                    <b>You have bought this product on a two year contract.</b>
+                }
+
+                <br />
+                <br />
+                string imagePath = DataStorage.ProductImageStorage.GetFullPath(p.ImagePath);
+
+                if (imagePath.EndsWith(".png"))
+                {
+                    <img src="@imagePath" height="300" />
+                }
+                else
+                {
+                    <img src="@imagePath" height="300" style="border-color: black; border-width: 3px; border-style: solid" />
+                }
+
+                <br />
+                <br />
+                DisplayProduct(p);
+
+                <br />
+                <button class="button-class" style="width: 230px" onclick="window.location = '/Home/Products'">Return to the Products page</button>
+                <br />
+                <br />
+            }
+        </div>
+    </div>
+}

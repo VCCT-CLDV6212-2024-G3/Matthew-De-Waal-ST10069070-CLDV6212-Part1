@@ -17,11 +17,20 @@
 
     <div align="center">
         @{
-            foreach (var item in Resources.HomepageImages)
+            try
             {
-                <img src="@item" style="width: 90%; height: 500px; border-width: 5px; border-color: black; border-style: solid" />
-                <br />
-                <br />
+
+            
+                foreach (var item in Resources.HomepageImages)
+                {
+                    <img src="@item" style="width: 90%; height: 500px; border-width: 5px; border-color: black; border-style: solid" />
+                    <br />
+                    <br />
+                }
+            }
+            catch(Exception e)
+            {
+                <b>@e.Message</b>
             }
         }
     </div>

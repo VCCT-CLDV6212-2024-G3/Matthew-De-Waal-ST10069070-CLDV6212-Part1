@@ -10,6 +10,6 @@ namespace ABCRetail.Models.Tables
         public ProductTable() : 
             base(DataStorage.Configuration?.GetSection("ConnectionStrings").GetValue<string>("AzureStorage"), 
                 "Product", 
-                new string[] {"ProductName", "Price", "Category", "TotalStock", "ImagePath"}) { }
+                new string[] {"Id", "ProductName", "Price", "Category", "TotalStock", "ImagePath"}) { }
     }
 }

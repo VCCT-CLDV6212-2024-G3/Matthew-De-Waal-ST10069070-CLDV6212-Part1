@@ -8,6 +8,8 @@ using System.Diagnostics;
 
 namespace ABCRetail.Controllers
 {
+    using ABCRetail.Models;
+
     public class HomeController : Controller
     {
         public HomeController(IConfiguration configuration)
@@ -17,6 +19,14 @@ namespace ABCRetail.Controllers
 
         public IActionResult Index()
         {
+            if (this.Request.Query["Action"] == "SignOut")
+            {
+                ABCRetail.UserLoggedIn = false;
+                ABCRetail.UserName = string.Empty;
+                ABCRetail.UserFirstName = string.Empty;
+                ABCRetail.UserLastName = string.Empty;
+            }
+
             return View();
         }
 
@@ -57,12 +67,18 @@ namespace ABCRetail.Controllers
 
                 string userName = Convert.ToString(signInRequest?.UserName);
                 string password = Convert.ToString(signInRequest?.Password);
-
                 bool accountExists = AccountExists(userName);
-                bool authenticated = Authenticate(userName, password);
+
+                StringCollection userDetails = new StringCollection();
+                bool authenticated = Authenticate(userName, password, ref userDetails);
 
                 if(accountExists && authenticated)
                 {
+                    ABCRetail.UserLoggedIn = true;
+                    ABCRetail.UserName = userDetails[0];
+                    ABCRetail.UserFirstName = userDetails[1];
+                    ABCRetail.UserLastName = userDetails[2];
+
                     // The request succeeded
                     this.Response.StatusCode = 1;
                 }
@@ -71,7 +87,6 @@ namespace ABCRetail.Controllers
                     // The request failed
                     this.Response.StatusCode = 2;
                 }
-
             }
 
             return View();
@@ -127,10 +142,9 @@ namespace ABCRetail.Controllers
             return accountExists;
         }
 
-        private bool Authenticate(string userName, string password)
+        private bool Authenticate(string userName, string password, ref StringCollection userDetails)
         {
             bool result = false;
-            StringCollection userDetails = null;
 
             foreach(StringCollection record in DataStorage.CustomerProfileTable)
             {
@@ -148,6 +162,11 @@ namespace ABCRetail.Controllers
         }
         
         public IActionResult ProductDisplay()
+        {
+            return View();
+        }
+
+        public IActionResult BuyProduct()
         {
             return View();
         }
