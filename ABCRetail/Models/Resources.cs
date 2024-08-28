@@ -8,7 +8,7 @@ namespace ABCRetail.Models
         {
             get
             {
-                StringCollection resources = DataStorage.MultimediaStorage.RecieveData("/homepage-images/");
+                StringCollection resources = DataStorage.MultimediaStorage?.RecieveData("/homepage-images/");
                 string[] result = new string[resources.Count];
 
                 for(int i = 0; i < resources.Count; i++)

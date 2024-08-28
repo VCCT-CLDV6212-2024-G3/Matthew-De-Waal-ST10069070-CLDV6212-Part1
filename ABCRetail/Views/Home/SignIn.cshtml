@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     ViewData["Title"] = "SignIn";
 }
 
@@ -7,23 +6,33 @@
     <img src="~/images/user-profile.png" height="180" />
     <br />
     <br />
-    <h1 style="background-color: white; width: fit-content">Sign In</h1>
 
-    <div style="width: fit-content">
-    <table cellpadding="2">
-        <tr>
-            <th>UserName:</th>
-            <td><input id="txtUserName" type="text" value="" style="width: 240px" /></td>
-        </tr>
-        <tr>
-            <th>Password:</th>
-            <td><input id="txtPassword" type="password" value="" style="width: 240px" /></td>
-        </tr>
-    </table>
-    <br />
+    <!-- Content 1 -->
+    <div id="content1" style="width: fit-content; display: block">
+        <h1 style="background-color: white; width: fit-content">Sign In</h1>
+        <table cellpadding="2">
+            <tr>
+                <th>UserName:</th>
+                <td><input id="txtUserName" type="text" value="" style="width: 240px" /></td>
+            </tr>
+            <tr>
+                <th>Password:</th>
+                <td><input id="txtPassword" type="password" value="" style="width: 240px" /></td>
+            </tr>
+        </table>
+        <br />
 
-    <button class="button-class button-class-small" onclick="SignIn(txtUserName.value, txtPassword.value)">Sign In</button>
-    <br />
-    <button class="button-class button-class-small" onclick="RedirectToHomePage()">Cancel</button>
+        <button class="button-class button-class-small" onclick="SignIn(txtUserName.value, txtPassword.value)">Sign In</button>
+        <br />
+        <button class="button-class button-class-small" onclick="RedirectToHomePage()">Cancel</button>
+    </div>
+
+    <!-- Content 2 -->
+    <div id="content2" style="display: none">
+        <h2 style="background-color: white; width: fit-content">Sign In failed</h2>
+        <b style="background-color: white; width: fit-content">The credentials that were provided are invalid.</b><br /><br />
+        <button class="button-class button-class-small" onclick="window.location.reload()">Try Again</button>
+        <br />
+        <br />
     </div>
 </div>

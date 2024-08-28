@@ -6,31 +6,23 @@
 
     <div align="center">
         <div style="width: 90%; background-color: white">
-        <br />
-        <br />
-        <h1>Explore our amazing products...</h1>
-        <a href="/Home/Products">Explore Now</a>
-        <br />
-        <br />
+            <br />
+            <br />
+            <h1>Explore our amazing products...</h1>
+            <a href="/Home/Products">Explore Now</a>
+            <br />
+            <br />
         </div>
     </div>
 
     <div align="center">
         @{
-            try
+            // Iterate through the 'HomepageImages' collection.
+            foreach (var item in Resources.HomepageImages)
             {
-
-            
-                foreach (var item in Resources.HomepageImages)
-                {
-                    <img src="@item" style="width: 90%; height: 500px; border-width: 5px; border-color: black; border-style: solid" />
-                    <br />
-                    <br />
-                }
-            }
-            catch(Exception e)
-            {
-                <b>@e.Message</b>
+                <img src="@item" style="width: 90%; height: 500px; border-width: 5px; border-color: black; border-style: solid" />
+                <br />
+                <br />
             }
         }
     </div>

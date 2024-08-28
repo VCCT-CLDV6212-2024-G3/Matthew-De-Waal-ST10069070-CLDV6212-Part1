@@ -5,12 +5,17 @@
 <div align="center">
 
     @{
+        // Obtain the product count from the ProductTable.
         int productCount = DataStorage.ProductTable.Count;
+        // Declare and instantiate an array of Product.
         Product[] products = new Product[productCount];
+        // Declare and initialize this variable to zero.
         int count = 0;
 
+        // Iterate through the ProductTable collection.
         foreach (var sProduct in DataStorage.ProductTable)
         {
+            // Instantiate a Product object.
             products[count] = new Product
                 {
                     Id = sProduct[0],
@@ -20,24 +25,32 @@
                     TotalStock = Convert.ToInt32(sProduct[4]),
                     ImagePath = sProduct[5]
                 };
+
+            // Increment the count by one.
             count++;
         }
 
         <table cellpadding="16" style="border-color: black; border-width: 2px; border-style: solid">
 
             @{
-                string sCategory = this.Context.Request.Query["Category"];
+                // Obtain the product category from the request.
+                string? sCategory = this.Context.Request.Query["Category"];
                 int count2 = 0;
 
+                // Iterate through the products array.
                 foreach (Product product in products)
                 {
+                    // Check for a match with the provided category and the category of the product.
                     if (product.Category == sCategory)
                     {
+                        // Increment count2 by one.
                         count2++;
+
+                        // Get the full path of the image.
                         string? imageFullPath = DataStorage.ProductImageStorage?.GetFullPath(product.ImagePath);
 
                         <tr>
-                            <td><img src="@imageFullPath" style="width: 300px" /></td>
+                            <td><a href="#" onclick="window.open('@imageFullPath', 'Preview', 'width=800,height=460,resizable=yes')"><img src="@imageFullPath" style="width: 340px"/></a></td>
                             <td style="background-color: white">
                                 <b style="font-size: 13pt">@product.Name</b><br />
                                 <b style="font-size: 13pt">Price: @product.Price.ToString("N2")</b>
@@ -45,6 +58,7 @@
                             @{
                                 if (ABCRetail.UserLoggedIn)
                                 {
+                                    // Display these buttons if the user is logged in.
                                     <td>
                                         <button class="button-class button-class-small2" onclick="BuyProduct('@product.Id', '@ABCRetail.UserName', 'OnceOff')">Pay Now</button>
                                         <br />
@@ -58,6 +72,7 @@
 
                 if (count2 == 0)
                 {
+                    // Display this message if no products were found.
                     <tr>
                         <td style="background-color: white">No products found</td>
                     </tr>
@@ -67,6 +82,8 @@
         </table>
         <br />
         <button class="button-class" onclick="window.location = '/Home/Products'">Back</button>
+        <br />
+        <br />
     }
 
 </div>

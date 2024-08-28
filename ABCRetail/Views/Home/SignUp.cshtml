@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     ViewData["Title"] = "SignUp";
 }
 
@@ -7,36 +6,46 @@
     <img src="~/images/user-profile.png" height="180" />
     <br />
     <br />
-    <h1 style="background-color: white; width: fit-content">Sign Up</h1>
-    <p style="background-color: white; width: fit-content">Please enter your details to create your account with ABC Retail.</p>
-    
-    <div style="width: fit-content">
-    <table cellpadding="2">
-        <tr>
-            <th>UserName:</th>
-            <td><input id="txtUserName" type="text" value="" style="width: 240px" /></td>
-        </tr>
-        <tr>
-            <th>First Name:</th>
-            <td><input id="txtFirstName" type="text" value="" style="width: 240px" /></td>
-        </tr>
-        <tr>
-            <th>Last Name:</th>
-            <td><input id="txtLastName" type="text" value="" style="width: 240px" /></td>
-        </tr>
-        <tr>
-            <th>Password:</th>
-            <td><input id="txtPassword" type="password" value="" style="width: 240px" /></td>
-        </tr>
-        <tr>
-            <th>Confirm Password:</th>
-            <td><input id="txtConfirmPassword" type="password" value="" style="width: 240px" /></td>
-        </tr>
-    </table>
-    <br />
 
-    <button class="button-class button-class-small" onclick="SignUp(txtUserName.value, txtFirstName.value, txtLastName.value, txtPassword.value, txtConfirmPassword.value)">Create Account</button>
-    <br />
-    <button class="button-class button-class-small" onclick="RedirectToHomePage()">Cancel</button>
+    <!-- Content 1 -->
+    <div id="content1" style="width: fit-content">
+        <h1 style="background-color: white; width: fit-content">Sign Up</h1>
+        <p style="background-color: white; width: fit-content">Please enter your details to create your account with ABC Retail.</p>
+        <table cellpadding="2">
+            <tr>
+                <th>UserName:</th>
+                <td><input id="txtUserName" type="text" value="" style="width: 240px" /></td>
+            </tr>
+            <tr>
+                <th>First Name:</th>
+                <td><input id="txtFirstName" type="text" value="" style="width: 240px" /></td>
+            </tr>
+            <tr>
+                <th>Last Name:</th>
+                <td><input id="txtLastName" type="text" value="" style="width: 240px" /></td>
+            </tr>
+            <tr>
+                <th>Password:</th>
+                <td><input id="txtPassword" type="password" value="" style="width: 240px" /></td>
+            </tr>
+            <tr>
+                <th>Confirm Password:</th>
+                <td><input id="txtConfirmPassword" type="password" value="" style="width: 240px" /></td>
+            </tr>
+        </table>
+        <br />
+
+        <button class="button-class button-class-small" onclick="SignUp(txtUserName.value, txtFirstName.value, txtLastName.value, txtPassword.value, txtConfirmPassword.value)">Create Account</button>
+        <br />
+        <button class="button-class button-class-small" onclick="RedirectToHomePage()">Cancel</button>
+    </div>
+
+    <!-- Content 2 -->
+    <div id="content2" style="display: none">
+        <h2 style="background-color: white; width: fit-content">Sign Up failed</h2>
+        <b style="background-color: white; width: fit-content">Please complete all the fields.<br />OR<br />The password must be at least eight characters long.<br />OR<br />The user account already exists.</b><br /><br />
+        <button class="button-class button-class-small" onclick="window.location.reload()">Try Again</button>
+        <br />
+        <br />
     </div>
 </div>

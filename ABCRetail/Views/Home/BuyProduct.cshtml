@@ -1,8 +1,14 @@
 ﻿@functions {
+    /// <summary>
+    /// Finds the product on the system by the provided id.
+    /// </summary>
+    /// <param name="id"></param>
+    /// <returns></returns>
     public Product? FindProduct(string id)
     {
         Product? product = null;
 
+        // Iterate through the ProductTable.
         foreach (var p in DataStorage.ProductTable)
         {
             if (p[0] == id)
@@ -23,6 +29,10 @@
         return product;
     }
 
+    /// <summary>
+    /// Displays the product to the user.
+    /// </summary>
+    /// <param name="product"></param>
     public void DisplayProduct(Product? product)
     {
         <table>
